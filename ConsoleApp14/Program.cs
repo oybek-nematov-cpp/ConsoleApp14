@@ -4,9 +4,28 @@ namespace ConsoleApp13
 {
     public class BirdCount
     {
-        public static int[] LastWeek()
+        private int[] counts;
+
+        
+        public BirdCount(int[] birdsPerDay)
         {
-            return new int[] { 0, 2, 5, 3, 7, 8, 4 };
+            counts = birdsPerDay;
+        }
+
+       
+        public void IncrementTodaysCount()
+        {
+            counts[counts.Length - 1] += 1;
+        }
+
+        
+        public void PrintCounts()
+        {
+            Console.WriteLine("Harfatlik qushlar soni:");
+            foreach (int count in counts)
+            {
+                Console.WriteLine(count);
+            }
         }
     }
 
@@ -14,13 +33,11 @@ namespace ConsoleApp13
     {
         static void Main(string[] args)
         {
-            int[] lastWeekCounts = BirdCount.LastWeek();
+            int[] lastWeek = { 0, 2, 5, 3, 7, 8, 4 };
+            BirdCount birdCount = new BirdCount(lastWeek);
 
-            Console.Write("O‘tgan haftadagi qushlar soni: ");
-            foreach (int count in lastWeekCounts)
-            {
-                Console.Write(count+", ");
-            }
+            birdCount.IncrementTodaysCount(); 
+            birdCount.PrintCounts();
         }
     }
 }
